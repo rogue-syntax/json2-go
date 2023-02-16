@@ -13,7 +13,7 @@ I was tired of having to update my struct definintions and sql row scanning func
 This utility only works with non null column values to avoid the issue of scanning sql null values into go primatives.
 
 # How
-Many mysql/mariadb IDE programs will help you export a JSON serialization of a result set a large, complex joined table or view selection result.
+Many mysql/mariadb IDE programs will help you export a JSON serialization of a result set for a large, complex joined table or view selection result.
 Export _one_ row with all columns holding non null data to somefile.json:
 ``` js
 [
