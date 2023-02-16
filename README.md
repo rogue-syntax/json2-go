@@ -44,8 +44,15 @@ admin@rogue-syntax.com:~/json2-go$ nodejs json2go.js --file=./somefile.json --ou
 
 ## Duplicate column names from join 
 If you have a join that results in duplicate column names, json2go will flag and generate duplicate struct fields:
-
+- use optional argument --duplicates, otherwise dupicates will be omitted from type definition (while still being mitigated from incoming sql rows in the scanner)
 - output type with duplicates:
+
+## Command Line Arguments
+--file= <Path to your json file>
+--name= <Name for the type definition>
+--out= <Path to outut to>
+--duplicates= <Optional flag to include duplicate fields in type definition>
+
 ``` go
 type User struct { 
 	User_id  string 

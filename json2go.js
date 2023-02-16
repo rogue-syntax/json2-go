@@ -58,11 +58,11 @@ function replaceDuplicateJSON(data) {
     var hasDuplicates = false;
     parser.onkey = parser.onopenobject = k => {
         if (typeof result[k] !== 'undefined') {
-            hasDuplicates = true;
-            let NewK = structFirstLetter(k, 'lower');
-            let newKey = NewK + `_DUPLICATE_` + i;
-            result[newKey] = dummyData[k];
-            i += 1;
+			hasDuplicates = true;
+			let NewK = structFirstLetter(k, 'lower');
+			let newKey = NewK + `_DUPLICATE_` + i;
+			result[newKey] = dummyData[k];
+			i += 1;
         } else {
             result[k] = dummyData[k];
         }
@@ -74,7 +74,7 @@ function replaceDuplicateJSON(data) {
     };
 }
 
-jsonToGoStruct = function (namer, inpStr) {
+jsonToGoStruct = function (namer, inpStr, preserveDuplicates) {
     let obj = {};
     let outp = `type ` + namer + ` struct { \r\n\t`;
     var repDup = replaceDuplicateJSON(inpStr);
@@ -84,13 +84,7 @@ jsonToGoStruct = function (namer, inpStr) {
     keyList.forEach((key) => {
         let val = inp[key];
         let type = typeof inp[key];
-        let newKey = "";
-        if (key.includes("_DUPLICATE_") === false) {
-            newKey = structFirstLetter(key);
-        } else {
-            newKey = key;
-        }
-        let typeVal = "";
+		let typeVal = "";
         if (type === 'number') {
             typeVal = numberIsIntOrFloat();
         } else if (type === 'string') {
@@ -98,8 +92,18 @@ jsonToGoStruct = function (namer, inpStr) {
         } else {
             typeVal === '!UNKOWN_TYPE!'
         }
-
-        outp += newKey + `  ` + typeVal + ` \r\n\t`
+        let newKey = "";
+		let isDuplicate = key.includes("_DUPLICATE_");
+        if (!isDuplicate) {
+			//ensure export across go packages
+            newKey = structFirstLetter(key);
+			outp += newKey + `  ` + typeVal + ` \r\n\t`
+        } else {
+			newKey = key;
+			if( preserveDuplicates ){
+				outp += newKey + `  ` + typeVal + ` \r\n\t`
+			}
+        }
 
     })
     outp += `}`;
@@ -246,6 +250,7 @@ stringToGoStruct = function (namer, inp) {
 
 
 let msgOut = "";
+preserveDuplicates = false;
 
 try {
     let args = {};
@@ -253,9 +258,14 @@ try {
         args["name"] = process.env.npm_config_name;
         args["file"] = process.env.npm_config_file;
         args["out"] = process.env.npm_config_out;
+		args["duplicates"] = process.env.npm_config_duplicates;
     } else {
         args = getArgs();
     }
+	
+	if( typeof args["duplicates"] !== 'undefined' ){
+		preserveDuplicates = true;
+	}
 
     let jsonStrIn = fs.readFileSync(args["file"], { encoding: 'utf8', flag: 'r' });
 
@@ -263,7 +273,7 @@ try {
 
     let fileOutputLoc = args["out"];
 
-    let outObj = jsonToGoStruct(tyName, jsonStrIn);
+    let outObj = jsonToGoStruct(tyName, jsonStrIn, preserveDuplicates);
 
     let defLoc = fileOutputLoc + "/" + tyName + "_def.txt";
 
