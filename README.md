@@ -33,19 +33,25 @@ admin@rogue-syntax.com:~$ npm exec json2-go --file=./somefile.json --out-./ --na
 ```
 
 ## Install from github and use with npm:
+```console
 admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
 admin@rogue-syntax.com:~$ cd json2-go
 admin@rogue-syntax.com:~/json2-go$ npm run j2g --file=./somefile.json --out-./ --name:MyType
+```
 
 ## Install from github and use with nodejs
+```console
 admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
 admin@rogue-syntax.com:~$ cd json2-go
 admin@rogue-syntax.com:~/json2-go$ nodejs json2go.js --file=./somefile.json --out-./ --name:MyType
+```
 
 ## Duplicate column names from join 
+```console
 If you have a join that results in duplicate column names, json2go will flag and generate duplicate struct fields:
 - use optional argument --duplicates, otherwise dupicates will be omitted from type definition (while still being mitigated from incoming sql rows in the scanner)
 - output type with duplicates:
+```
 
 ## Command Line Arguments
 --file= <Path to your json file>
@@ -81,6 +87,3 @@ func ScanUser( ul *User, rows * sql.Rows) error {
 	return nil
 }
 ```
-
-
-
