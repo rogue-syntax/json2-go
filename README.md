@@ -26,7 +26,7 @@ Export _one_ row with all columns holding non null data to somefile.json:
 * so, just export _one_ row with all columns holding non null data to somefile.json
 
 
-## Install from NPM and use with npm:
+## Install from npm and use with npm:
 ```console
 admin@rogue-syntax.com:~$ npm install -g json2-go
 admin@rogue-syntax.com:~$ npm exec json2-go --file=./somefile.json --out-./ --name:MyType
