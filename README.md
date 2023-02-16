@@ -1,6 +1,6 @@
 # JSON2-Go
 'json2-go' is a convenience command line tool for taking a json formatted mysql row result and generating a GO struct and row scan function.
-* CAn be quite useful when you have a joined view with 50 colunms that keeps changing around throughout the courdse of developemnt!
+* Useful when you have a joined view with many colunms that keeps changing around in the course of developemnt
 
 
 # Why?
