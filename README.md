@@ -1,5 +1,7 @@
 # JSON2-Go
-'json2-go' is s convenience command line tool for taking a json formatted mysql row result and generating a GO struct and row scan function.
+'json2-go' is a convenience command line tool for taking a json formatted mysql row result and generating a GO struct and row scan function.
+* CAn be quite useful when you have a joined view with 50 colunms that keeps changing around throughout the courdse of developemnt!
+
 
 # Why?
 I was tired of having to update my struct definintions and sql row scanning functions for large, many columned mysql / mariadb joined views:
@@ -24,11 +26,21 @@ Export _one_ row with all columns holding non null data to somefile.json:
 * so, just export _one_ row with all columns holding non null data to somefile.json
 
 
-## Use with NPM
-npm run j2g --file=./somefile.json --out-./ --name:MyType
+## Install from NPM and use with npm:
+```console
+admin@rogue-syntax.com:~$ npm install -g json2-go
+admin@rogue-syntax.com:~$ npm exec json2-go --file=./somefile.json --out-./ --name:MyType
+```
 
-## Use with nodejs
-nodejs json2go.js --file=./somefile.json --out-./ --name:MyType
+## Install from github and use with npm:
+admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
+admin@rogue-syntax.com:~$ cd json2-go
+admin@rogue-syntax.com:~/json2-go$ npm run j2g --file=./somefile.json --out-./ --name:MyType
+
+## Install from github and use with nodejs
+admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
+admin@rogue-syntax.com:~$ cd json2-go
+admin@rogue-syntax.com:~/json2-go$ nodejs json2go.js --file=./somefile.json --out-./ --name:MyType
 
 ## Duplicate column names from join 
 If you have a join that results in duplicate column names, json2go will flag and generate duplicate struct fields:
@@ -63,8 +75,5 @@ func ScanUser( ul *User, rows * sql.Rows) error {
 }
 ```
 
-* This is useful when you have a joined wiew with 50 colunms that keeps changing around throughout the courdse of developemnt!
-
-# meta
 
 

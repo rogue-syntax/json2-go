@@ -1,6 +1,6 @@
 {
   "name": "json2-go",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A convenience command line tool to translate an mysql eported row in json format into a GO struct and scan function",
   "main": "json2go.js",
   "eslintConfig": {},
