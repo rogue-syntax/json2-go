@@ -54,10 +54,10 @@ If you have a join that results in duplicate column names, json2go will flag and
 ```
 
 ## Command Line Arguments
---file= Path to your json file
---name= Name for the type definition
---out= Path to outut to
---duplicates= Optional flag to include duplicate fields in type definition
+* --file= Path to your json file
+* --name= Name for the type definition
+* --out= Path to outut to
+* --duplicates= Optional flag to include duplicate fields in type definition
 
 ``` go
 type User struct { 
