@@ -29,21 +29,21 @@ Export _one_ row with all columns holding non null data to somefile.json:
 ## Install from npm and use with npm:
 ```console
 admin@rogue-syntax.com:~$ npm install -g json2-go
-admin@rogue-syntax.com:~$ npm exec json2-go --file=./somefile.json --out-./ --name:MyType
+admin@rogue-syntax.com:~$ npm exec json2-go --file=./somefile.json --out-./ --name=MyType
 ```
 
 ## Install from github and use with npm:
 ```console
 admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
 admin@rogue-syntax.com:~$ cd json2-go
-admin@rogue-syntax.com:~/json2-go$ npm run j2g --file=./somefile.json --out-./ --name:MyType
+admin@rogue-syntax.com:~/json2-go$ npm run j2g --file=./somefile.json --out-./ --name=MyType
 ```
 
 ## Install from github and use with nodejs
 ```console
 admin@rogue-syntax.com:~$ git clone https://github.com/rogue-syntax/json2-go.git
 admin@rogue-syntax.com:~$ cd json2-go
-admin@rogue-syntax.com:~/json2-go$ nodejs json2go.js --file=./somefile.json --out-./ --name:MyType
+admin@rogue-syntax.com:~/json2-go$ nodejs json2go.js --file=./somefile.json --out-./ --name=MyType
 ```
 
 ## Duplicate column names from join 
